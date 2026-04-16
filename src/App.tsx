@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Lenis from "lenis";
+import { ChatBot } from "./components/ChatBot";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -859,6 +860,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <ChatBot />
     </div>
   );
 }
