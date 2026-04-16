@@ -296,29 +296,36 @@ export default function App() {
         <div className="absolute top-1/4 -right-20 w-96 h-96 bg-charcoal/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-charcoal/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <div>
-              <span className="inline-block px-3 py-1 bg-charcoal/5 text-charcoal text-xs font-bold tracking-widest uppercase rounded-lg mb-6 border border-charcoal/10">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <div className="max-w-4xl">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <span className="inline-block px-3 py-1 bg-charcoal/5 text-charcoal text-[10px] font-bold tracking-[0.2em] uppercase rounded border border-charcoal/10 mb-8 backdrop-blur-sm">
                 Africa's Next Generation
               </span>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-charcoal mb-8 leading-[1.1]">
-                Developing Africa’s <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-charcoal to-slate-400">Next Generation</span> <br />
-                of Technology
+              
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-charcoal mb-6 leading-[0.85] uppercase">
+                <span className="block">Building</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-charcoal to-slate-400">Africa's</span>
+                <span className="block">Future.</span>
               </h1>
-              <p className="text-xl text-slate-700 mb-10 leading-relaxed">
+              
+              <p className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-2xl">
                 An emerging initiative focused on artificial intelligence, digital infrastructure, and future hardware manufacturing. Building practical systems that support Africa’s evolving digital economy.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#mission" className="px-8 py-4 bg-charcoal text-white font-semibold rounded-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group">
-                  Explore Our Vision <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              
+              <div className="flex flex-col sm:flex-row gap-6">
+                <a href="#mission" className="px-8 py-4 bg-charcoal text-white font-bold uppercase tracking-wider text-sm rounded hover:bg-slate-800 transition-all flex items-center justify-center gap-3 group">
+                  Explore Our Vision <ArrowRight size={18} className="transition-transform group-hover:translate-x-2" />
                 </a>
-                <a href="#contact" className="px-8 py-4 bg-charcoal/5 text-charcoal font-semibold rounded-lg border border-charcoal/10 hover:bg-charcoal/10 transition-all flex items-center justify-center">
+                <a href="#contact" className="px-8 py-4 bg-charcoal/5 text-charcoal font-bold uppercase tracking-wider text-sm rounded border border-charcoal/10 hover:bg-charcoal/10 transition-all flex items-center justify-center">
                   Contact Us
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
