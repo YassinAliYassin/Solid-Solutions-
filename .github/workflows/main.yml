@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'          # speeds up installs
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -26,18 +26,20 @@ jobs:
         run: npm run build
 
       # ──────────────────────────────────────────────
-      # FIXED DEPLOY STEP (this was failing)
+      # TERMINAL-BASED FTP DEPLOY (using lftp)
       # ──────────────────────────────────────────────
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps                # most hosts use this (try ftp only if it fails)
-          port: 21
-          timeout: 180000              # 3 minutes — fixes "Timeout (control socket)"
-          security: loose              # helps with some certificate issues
-          local-dir: ./dist            # ← CHANGE THIS if your build outputs to "build", "public", etc.
-          server-dir: ./public_html/   # ← CHANGE THIS to your hosting folder (often public_html/)
-          # dry-run: true            # uncomment this line first to test without uploading
+      - name: Deploy via FTP (lftp)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y lftp
+
+          # Configure lftp for FTPS (most hosts require this)
+          mkdir -p ~/.lftp
+          echo "set ssl:verify-certificate false" > ~/.lftp/rc
+
+          lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }} << EOF
+            set ftp:ssl-allow true
+            set ftp:passive-mode true
+            mirror -R --parallel=8 --delete --verbose ./dist/ public_html/
+            bye
+          EOF
