@@ -1,3 +1,37 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Application
+        run: npm run build
+
+      - name: Show Build Output (debug)
+        run: |
+          echo "=== Files after npm run build ==="
+          ls -la
+          echo "=== Looking for dist or build folder ==="
+          ls -la dist 2>/dev/null || ls -la build 2>/dev/null || echo "No dist/build folder found"
+
       - name: Deploy via FTP (lftp) - Terminal Agent
         run: |
           echo "Updating package list..."
@@ -9,23 +43,20 @@
           echo "lftp installed successfully"
           lftp --version
 
-          echo "Checking build output folder..."
-          ls -la ./
-
-          # Change this if your build folder is NOT "dist"
-          # Common options: dist, build, public, out
-          BUILD_FOLDER="./dist"
+          echo "Checking build folder..."
+          BUILD_FOLDER="./dist"          # ← CHANGE TO "./build" if your build creates a "build" folder
 
           if [ -d "$BUILD_FOLDER" ]; then
             echo "Build folder '$BUILD_FOLDER' found"
             ls -la "$BUILD_FOLDER"
           else
             echo "Build folder '$BUILD_FOLDER' NOT found!"
-            echo "Run 'npm run build' locally and tell me what folder appears"
+            echo "Possible folders:"
+            ls -la
             exit 1
           fi
 
-          echo "🔧 Configuring lftp for your host..."
+          echo "Configuring lftp..."
           mkdir -p ~/.lftp
           cat > ~/.lftp/rc << EOF
             set ssl:verify-certificate false
@@ -34,11 +65,11 @@
             set net:reconnect-interval-base 5
           EOF
 
-          echo "Starting upload to FTP server..."
+          echo "Starting upload to public_html/..."
           lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }} << EOF
             set ftp:ssl-allow true
             mirror -R --parallel=8 --delete --verbose --no-recursion "$BUILD_FOLDER"/ public_html/
             bye
           EOF
 
-          echo "🎉 Deployment finished!"
+          echo "Deployment finished!"
