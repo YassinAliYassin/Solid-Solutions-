@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-      - export DEPLOYPATH=/home/solidsol/public_html/
-          - /bin/cp -R * $DEPLOYPATH
+    - export DEPLOYPATH=/home/solidsol/public_html/
+    - /bin/cp -R dist/* $DEPLOYPATH
           
