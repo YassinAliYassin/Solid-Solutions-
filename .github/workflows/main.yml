@@ -1,45 +1,44 @@
-name: Auto Deploy
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Get Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build Application
-        run: npm run build
-
-      # ──────────────────────────────────────────────
-      # TERMINAL-BASED FTP DEPLOY (using lftp)
-      # ──────────────────────────────────────────────
-      - name: Deploy via FTP (lftp)
+      - name: Deploy via FTP (lftp) - Terminal Agent
         run: |
+          echo "🔄 Updating package list..."
           sudo apt-get update -qq
+
+          echo "📦 Installing lftp..."
           sudo apt-get install -y lftp
 
-          # Configure lftp for FTPS (most hosts require this)
-          mkdir -p ~/.lftp
-          echo "set ssl:verify-certificate false" > ~/.lftp/rc
+          echo "✅ lftp installed successfully"
+          lftp --version
 
+          echo "📁 Checking build output folder..."
+          ls -la ./
+
+          # Change this if your build folder is NOT "dist"
+          # Common options: dist, build, public, out
+          BUILD_FOLDER="./dist"
+
+          if [ -d "$BUILD_FOLDER" ]; then
+            echo "✅ Build folder '$BUILD_FOLDER' found"
+            ls -la "$BUILD_FOLDER"
+          else
+            echo "❌ Build folder '$BUILD_FOLDER' NOT found!"
+            echo "Run 'npm run build' locally and tell me what folder appears"
+            exit 1
+          fi
+
+          echo "🔧 Configuring lftp for your host..."
+          mkdir -p ~/.lftp
+          cat > ~/.lftp/rc << EOF
+            set ssl:verify-certificate false
+            set ftp:passive-mode true
+            set net:timeout 60
+            set net:reconnect-interval-base 5
+          EOF
+
+          echo "🚀 Starting upload to FTP server..."
           lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }} << EOF
             set ftp:ssl-allow true
-            set ftp:passive-mode true
-            mirror -R --parallel=8 --delete --verbose ./dist/ public_html/
+            mirror -R --parallel=8 --delete --verbose --no-recursion "$BUILD_FOLDER"/ public_html/
             bye
           EOF
+
+          echo "🎉 Deployment finished!"
