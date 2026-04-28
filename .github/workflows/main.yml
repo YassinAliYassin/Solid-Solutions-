@@ -1,5 +1,4 @@
 name: Auto Deploy
-
 on:
   push:
     branches:
@@ -8,7 +7,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Get Code
         uses: actions/checkout@v4
@@ -17,59 +15,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Build Application
         run: npm run build
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Show Build Output (debug)
-        run: |
-          echo "=== Files after npm run build ==="
-          ls -la
-          echo "=== Looking for dist or build folder ==="
-          ls -la dist 2>/dev/null || ls -la build 2>/dev/null || echo "No dist/build folder found"
+      - name: Verify Build
+        run: ls -R dist
 
-      - name: Deploy via FTP (lftp) - Terminal Agent
-        run: |
-          echo "Updating package list..."
-          sudo apt-get update -qq
-
-          echo "Installing lftp..."
-          sudo apt-get install -y lftp
-
-          echo "lftp installed successfully"
-          lftp --version
-
-          echo "Checking build folder..."
-          BUILD_FOLDER="./dist"          # ← CHANGE TO "./build" if your build creates a "build" folder
-
-          if [ -d "$BUILD_FOLDER" ]; then
-            echo "Build folder '$BUILD_FOLDER' found"
-            ls -la "$BUILD_FOLDER"
-          else
-            echo "Build folder '$BUILD_FOLDER' NOT found!"
-            echo "Possible folders:"
-            ls -la
-            exit 1
-          fi
-
-          echo "Configuring lftp..."
-          mkdir -p ~/.lftp
-          cat > ~/.lftp/rc << EOF
-            set ssl:verify-certificate false
-            set ftp:passive-mode true
-            set net:timeout 60
-            set net:reconnect-interval-base 5
-          EOF
-
-          echo "Starting upload to public_html/..."
-          lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }} << EOF
-            set ftp:ssl-allow true
-            mirror -R --parallel=8 --delete --verbose --no-recursion "$BUILD_FOLDER"/ public_html/
-            bye
-          EOF
-
-          echo "Deployment finished!"
+      - name: Sync to Webway
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./solidsolutions.africa/

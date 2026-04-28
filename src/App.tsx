@@ -309,7 +309,7 @@ export default function App() {
               </span>
               
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-charcoal mb-6 leading-[0.85] uppercase">
-                <span className="block">Building</span>
+                <span className="block" style={{ height: '83.6px' }}>Building</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-charcoal to-slate-400">Africa's</span>
                 <span className="block">Future.</span>
               </h1>
