@@ -129,6 +129,7 @@ export default function App() {
     }
     return false;
   });
+  const [scrollProgress, setScrollProgress] = useState(0);
   
   useEffect(() => {
     // Apply dark mode class
@@ -172,7 +173,14 @@ export default function App() {
 
     requestAnimationFrame(raf);
 
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      // Calculate scroll progress
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
     window.addEventListener("scroll", handleScroll);
     
     return () => {
@@ -252,6 +260,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-charcoal/10">
+      {/* Scroll Progress Bar - NEW UPGRADE */}
+      <div className="fixed top-0 left-0 w-full h-1 z-50">
+        <div 
+          className="h-full bg-charcoal transition-all duration-150"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       
         {activeDetail ? (
           <div 
