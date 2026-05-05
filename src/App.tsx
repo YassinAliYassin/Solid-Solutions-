@@ -651,7 +651,33 @@ export default function App() {
       </section>
 
       <CaseStudies />
-
+      
+      {/* Impact Statistics - NEW UPGRADE */}
+      <section className="py-24 bg-charcoal text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle subtitle="Our growing impact across Africa's technology landscape.">
+            Impact Statistics
+          </SectionTitle>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: "Active Projects", value: "12+", icon: Code },
+              { label: "Countries Reached", value: "8", icon: Globe },
+              { label: "Developers", value: "150+", icon: Users },
+              { label: "Uptime SLA", value: "99.9%", icon: Shield }
+            ].map((stat, i) => (
+              <div key={i} className="text-center p-6 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+                <div className="w-12 h-12 mx-auto mb-4 bg-white/10 rounded-xl flex items-center justify-center">
+                  <stat.icon size={24} />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
+                <div className="text-sm text-white/60 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* Development Roadmap */}
       <section id="roadmap" className="py-24 bg-bg-dark">
         <div className="max-w-7xl mx-auto px-6">
