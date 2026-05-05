@@ -649,7 +649,27 @@ export default function App() {
           </div>
         </div>
       </section>
-
+      
+      {/* Partners & Collaborators - NEW UPGRADE */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle subtitle="Organizations and institutions advancing Africa's technology ecosystem together.">
+            Partners & Collaborators
+          </SectionTitle>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60 hover:opacity-100 transition-opacity">
+            {["TechHub Africa", "Innovate Now", "AfriLabs", "GSMA Africa"].map((partner, i) => (
+              <div key={i} className="p-8 glass-card text-center hover:border-charcoal/20 transition-all">
+                <div className="w-16 h-16 mx-auto mb-4 bg-charcoal/5 rounded-xl flex items-center justify-center">
+                  <Network size={24} className="text-charcoal/40" />
+                </div>
+                <span className="text-sm font-bold text-charcoal/40">{partner}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       <CaseStudies />
       
       {/* Impact Statistics - NEW UPGRADE */}
