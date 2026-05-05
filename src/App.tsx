@@ -650,6 +650,28 @@ export default function App() {
         </div>
       </section>
       
+      {/* Technology Gallery - NEW UPGRADE */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle subtitle="Visualizing the future of African technology infrastructure.">
+            Technology in Action
+          </SectionTitle>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((item, i) => (
+              <div key={i} className="aspect-square glass-card flex items-center justify-center hover:border-charcoal/20 transition-all group cursor-pointer">
+                <div className="text-center">
+                  <Code size={32} className="text-charcoal/30 group-hover:text-charcoal/60 transition-colors mx-auto mb-2" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-charcoal/30 group-hover:text-charcoal/60 transition-colors">
+                    Project {item}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* Team - NEW UPGRADE */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
