@@ -148,6 +148,20 @@ export default function App() {
     }
   }, [isDarkMode]);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl/Cmd + D = Toggle dark mode
+      if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+        e.preventDefault();
+        setIsDarkMode(!isDarkMode);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDarkMode]);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
