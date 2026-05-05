@@ -32,6 +32,7 @@ import { ParticleBackground } from "./components/ParticleBackground";
 import { HermesTerminal } from "./components/HermesTerminal";
 import { SystemStatus } from "./components/SystemStatus";
 import { VisitorCounter } from "./components/VisitorCounter";
+import { AIChatWidget } from "./components/AIChatWidget";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -115,6 +116,9 @@ const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, 
       
       {/* Live Visitor Counter */}
       <VisitorCounter />
+      
+      {/* AI Chat Widget */}
+      <AIChatWidget />
     </div>
   );
 };
