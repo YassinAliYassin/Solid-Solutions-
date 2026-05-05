@@ -29,6 +29,7 @@ import { ContactForm } from "./components/ContactForm";
 import CaseStudies from "./components/CaseStudies";
 import { NewsletterSignup } from "./components/NewsletterSignup";
 import { ParticleBackground } from "./components/ParticleBackground";
+import { HermesTerminal } from "./components/HermesTerminal";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -461,6 +462,9 @@ export default function App() {
 
       {/* Newsletter Signup */}
       <NewsletterSignup />
+      
+      {/* Hermes Terminal - Interactive AI Demo */}
+      <HermesTerminal />
       
       {/* Research & Innovation */}
       <section className="py-24">
