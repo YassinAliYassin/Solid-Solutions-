@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Layers, Globe, Database, Brain, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
@@ -62,7 +61,7 @@ export default function CaseStudies() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
-            <motion.div
+            <div
               key={study.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +119,7 @@ export default function CaseStudies() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

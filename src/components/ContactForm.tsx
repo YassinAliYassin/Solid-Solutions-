@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 
@@ -10,7 +9,7 @@ export function ContactForm() {
     <div className="w-full max-w-md mx-auto">
       <AnimatePresence mode="wait">
         {state.succeeded ? (
-          <motion.div 
+          <div 
             key="success"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -21,9 +20,9 @@ export function ContactForm() {
             </div>
             <h3 className="text-2xl font-bold text-charcoal mb-2">Message Delivered</h3>
             <p className="text-slate-600">We've received your inquiry and will be in touch shortly at info@solidsolutions.africa.</p>
-          </motion.div>
+          </div>
         ) : (
-          <motion.form 
+          <form 
             key="form"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -69,7 +68,7 @@ export function ContactForm() {
                 <><Send size={18} /> Send Message</>
               )}
             </button>
-          </motion.form>
+          </form>
         )}
       </AnimatePresence>
     </div>

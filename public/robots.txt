@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://solidsolutions.africa/sitemap.xml
+
+# Disallow admin/API paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/

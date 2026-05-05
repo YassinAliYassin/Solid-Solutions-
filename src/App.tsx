@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion, AnimatePresence } from "motion/react";
 import { 
   Cpu, 
   Network, 
@@ -43,8 +42,8 @@ const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: 
 );
 
 const Card = ({ title, description, icon: Icon, highlight = false, href, onClick }: { title: string, description: string, icon: any, highlight?: boolean, href?: string, onClick?: () => void }) => (
-  <motion.div 
-    whileHover={{ y: -5 }}
+  <div 
+    
     className={`glass-card p-8 flex flex-col h-full ${highlight ? 'border-charcoal/10 bg-charcoal/5' : ''}`}
   >
     <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-6 ${highlight ? 'bg-charcoal text-white' : 'bg-charcoal/5 text-slate-600'}`}>
@@ -71,7 +70,7 @@ const Card = ({ title, description, icon: Icon, highlight = false, href, onClick
         Learn more <ChevronRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
       </div>
     )}
-  </motion.div>
+  </div>
 );
 
 const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, description: string, key?: any }) => {
@@ -84,10 +83,10 @@ const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, 
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      <motion.div
+      <div
         className="relative w-full h-full preserve-3d transition-all duration-500"
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        
+        
       >
         {/* Front */}
         <div className="absolute inset-0 backface-hidden glass-card p-6 flex flex-col items-center justify-center text-center">
@@ -107,7 +106,7 @@ const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, 
           <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 text-white/60">{name}</h4>
           <p className="text-sm leading-relaxed text-white font-medium">{description}</p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -210,13 +209,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-charcoal/10">
-      <AnimatePresence mode="wait">
+      
         {activeDetail ? (
-          <motion.div 
+          <div 
             key="detail"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            
+            
+            
             className="min-h-screen pt-32 pb-24 px-6 max-w-5xl mx-auto"
           >
             <button 
@@ -263,13 +262,13 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div 
+          <div 
             key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            
+            
+            
           >
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-bg-main/80 backdrop-blur-lg border-bottom border-black/5 py-4' : 'bg-transparent py-6'}`}>
@@ -303,10 +302,10 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
           <div className="max-w-4xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            <div 
+              
+              
+              
             >
               <span className="inline-block px-3 py-1 bg-charcoal/5 text-charcoal text-[10px] font-bold tracking-[0.2em] uppercase rounded border border-charcoal/10 mb-8 backdrop-blur-sm">
                 Africa's Next Generation
@@ -330,7 +329,7 @@ export default function App() {
                   Contact Us
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -487,9 +486,9 @@ export default function App() {
                   { id: 'infra', label: "Infrastructure", color: "bg-charcoal/15 text-charcoal", desc: "Distributed cloud networks and low-latency connectivity protocols optimized for real-world environments.", icon: Network },
                   { id: 'hw', label: "Hardware", color: "bg-charcoal/5 text-charcoal", desc: "Custom-designed embedded systems and hardware assembly focused on edge-device efficiency.", icon: Smartphone }
                 ].map((layer, i) => (
-                  <motion.div
+                  <div
                     key={layer.id}
-                    whileHover={{ scale: 1.02, y: -5 }}
+                    
                     className={`group relative p-8 ${layer.color} border border-charcoal/10 rounded-2xl shadow-xl cursor-default overflow-hidden`}
                   >
                     <div className="flex justify-between items-center relative z-10">
@@ -506,7 +505,7 @@ export default function App() {
                     <p className={`mt-4 text-sm max-w-xl leading-relaxed ${i < 2 ? 'text-white/70' : 'text-slate-600'}`}>
                       {layer.desc}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -624,8 +623,8 @@ export default function App() {
               <div className="relative flex flex-col items-center w-full max-w-xl">
                 
                 {/* Root Node: Systems */}
-                <motion.div 
-                  whileHover={{ y: -3 }}
+                <div 
+                  
                   onClick={() => {
                     setActiveDetail('systems');
                     window.scrollTo(0, 0);
@@ -641,7 +640,7 @@ export default function App() {
                   
                   {/* Vertical Stem */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-8 bg-charcoal/10"></div>
-                </motion.div>
+                </div>
 
                 {/* Horizontal Branch */}
                 <div className="absolute top-[125px] left-1/4 right-1/4 h-px bg-charcoal/10"></div>
@@ -649,8 +648,8 @@ export default function App() {
                 {/* Children Nodes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 md:gap-32 w-full">
                   {/* Community Node */}
-                  <motion.div 
-                    whileHover={{ y: -3 }}
+                  <div 
+                    
                     onClick={() => {
                       setActiveDetail('community');
                       window.scrollTo(0, 0);
@@ -664,11 +663,11 @@ export default function App() {
                       <Users size={24} />
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-charcoal">Community</span>
-                  </motion.div>
+                  </div>
                   
                   {/* Research Node */}
-                  <motion.div 
-                    whileHover={{ y: -3 }}
+                  <div 
+                    
                     onClick={() => {
                       setActiveDetail('research');
                       window.scrollTo(0, 0);
@@ -682,7 +681,7 @@ export default function App() {
                       <Microscope size={24} />
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-charcoal">Research</span>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Decorative Flow Indicators */}
@@ -775,9 +774,9 @@ export default function App() {
           </div>
         </div>
       </footer>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      
     </div>
   );
 }
