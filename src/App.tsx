@@ -670,6 +670,44 @@ export default function App() {
         </div>
       </section>
       
+      {/* FAQ - NEW UPGRADE */}
+      <section className="py-24 bg-bg-dark">
+        <div className="max-w-4xl mx-auto px-6">
+          <SectionTitle subtitle="Common questions about our technology initiative and how you can get involved.">
+            Frequently Asked Questions
+          </SectionTitle>
+          
+          <div className="space-y-4">
+            {[
+              {
+                q: "What is Solid Solutions?",
+                a: "Solid Solutions is an emerging technology initiative focused on artificial intelligence, digital infrastructure, and hardware innovation for Africa's evolving digital economy."
+              },
+              {
+                q: "How can I collaborate with you?",
+                a: "We welcome developers, researchers, and institutions to join our ecosystem. Contact us at info@solidsolutions.africa to explore collaboration opportunities."
+              },
+              {
+                q: "What technologies do you focus on?",
+                a: "Our core focus areas include AI/ML, embedded systems, edge computing, digital infrastructure, and future hardware manufacturing optimized for African environments."
+              },
+              {
+                q: "Do you offer internships or mentorship?",
+                a: "Yes! We're building a developer ecosystem with technical mentorship programs, builder workshops, and hands-on learning opportunities. Reach out to learn more."
+              }
+            ].map((faq, i) => (
+              <details key={i} className="glass-card p-6 group cursor-pointer">
+                <summary className="flex justify-between items-center font-bold text-charcoal list-none">
+                  {faq.q}
+                  <ChevronRight size={20} className="transition-transform group-open:rotate-90" />
+                </summary>
+                <p className="mt-4 text-slate-700 leading-relaxed">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       <CaseStudies />
       
       {/* Impact Statistics - NEW UPGRADE */}
