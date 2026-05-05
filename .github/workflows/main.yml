@@ -32,3 +32,11 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /home/solidsol/public_html/
+
+      - name: Verify Site Is Live
+        run: |
+          echo "Checking site status..."
+          curl -I -m 10 https://solidsolutions.africa || echo "Site check failed"
+          curl -I -m 10 http://solidsolutions.africa || echo "HTTP check failed"
+        continue-on-error: true
+
