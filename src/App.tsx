@@ -975,6 +975,24 @@ export default function App() {
               Try Solid LLM
             </a>
           </div>
+          
+          {/* Share Buttons */}
+          <div className="mt-8 flex justify-center gap-4">
+            {[
+              { label: "Twitter", icon: "𝕏" },
+              { label: "LinkedIn", icon: "in" },
+              { label: "Facebook", icon: "f" }
+            ].map((social, i) => (
+              <button
+                key={i}
+                onClick={() => navigator.share?.({ title: "Solid Solutions", url: window.location.href })}
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all text-sm font-bold"
+                aria-label={`Share on ${social.label}`}
+              >
+                {social.icon}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
       
