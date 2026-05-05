@@ -130,6 +130,7 @@ export default function App() {
     return false;
   });
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showCookieBanner, setShowCookieBanner] = useState(true);
   
   useEffect(() => {
     // Apply dark mode class
@@ -260,6 +261,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-charcoal/10">
+      {/* Cookie Consent Banner - NEW UPGRADE */}
+      {showCookieBanner && (
+        <div className="fixed bottom-0 left-0 w-full bg-charcoal text-white p-6 z-50 shadow-2xl">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-white/80">
+              We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.
+            </p>
+            <button
+              onClick={() => setShowCookieBanner(false)}
+              className="px-6 py-2 bg-white text-charcoal font-bold rounded-lg hover:bg-white/90 transition-all whitespace-nowrap"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      )}
+      
       {/* Scroll Progress Bar - NEW UPGRADE */}
       <div className="fixed top-0 left-0 w-full h-1 z-50">
         <div 
