@@ -114,7 +114,28 @@ const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDetail, setActiveDetail] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('darkMode') === 'true' || 
+             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
   
+  useEffect(() => {
+    // Apply dark mode class
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+    }
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('darkMode', isDarkMode.toString());
+    }
+  }, [isDarkMode]);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -288,6 +309,21 @@ export default function App() {
               <Brain size={16} />
               AI Tool
             </a>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 rounded-full hover:bg-charcoal/10 dark:hover:bg-white/10 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <svg className="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
       </nav>
@@ -335,7 +371,7 @@ export default function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-bg-dark relative overflow-hidden">
+      <section id="about" className="py-24 bg-bg-dark opacity-0 animate-fade-in-up stagger-1 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <SectionTitle>A Technology Initiative for Africa’s Digital Future</SectionTitle>
@@ -350,7 +386,7 @@ export default function App() {
       </section>
 
       {/* Mission Section */}
-      <section id="mission" className="py-24 grid-pattern">
+      <section id="mission" className="py-24 grid-pattern opacity-0 animate-fade-in-up stagger-2">
         <div className="max-w-7xl mx-auto px-6">
           <SectionTitle subtitle="Strengthening Africa’s technological capability through research, collaboration, and the development of scalable digital systems.">
             Our Mission
@@ -380,7 +416,7 @@ export default function App() {
       </section>
 
       {/* Core Technology Pillars */}
-      <section id="pillars" className="py-24 bg-bg-dark">
+      <section id="pillars" className="py-24 bg-bg-dark opacity-0 animate-fade-in-up stagger-3">
         <div className="max-w-7xl mx-auto px-6">
           <SectionTitle>Core Technology Pillars</SectionTitle>
           <div className="grid md:grid-cols-3 gap-8">
