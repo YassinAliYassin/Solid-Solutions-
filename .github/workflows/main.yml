@@ -27,8 +27,8 @@ jobs:
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: solidsolutions.africa
-          username: solidsol
+          server: cpanel.solidsolutions.africa
+          username: solidLLM@solidsolutions.africa
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /home/solidsol/public_html/
