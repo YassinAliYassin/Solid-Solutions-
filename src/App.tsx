@@ -1046,6 +1046,15 @@ export default function App() {
             <div className="glass-card p-8">
               <ContactForm />
             </div>
+            
+            {/* Map Placeholder - NEW UPGRADE */}
+            <div className="glass-card p-8 min-h-[300px] flex items-center justify-center">
+              <div className="text-center">
+                <Globe size={48} className="text-charcoal/20 mx-auto mb-4" />
+                <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">Map Loading...</p>
+                <p className="text-xs text-slate-400 mt-2">Office locations across Africa</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
