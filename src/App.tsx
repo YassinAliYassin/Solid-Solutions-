@@ -675,6 +675,32 @@ export default function App() {
         </div>
       </section>
       
+      {/* Testimonials - NEW UPGRADE */}
+      <section className="py-24 bg-bg-dark">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle subtitle="What collaborators and partners say about our technology initiative.">
+            Testimonials
+          </SectionTitle>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { quote: "Solid Solutions is paving the way for Africa's tech future with practical, scalable solutions.", author: "Tech Partner", role: "Innovation Lead" },
+              { quote: "Their approach to AI infrastructure is exactly what the continent needs right now.", author: "Research Collaborator", role: "University Professor" },
+              { quote: "Working with Solid Solutions has opened new possibilities for our developer community.", author: "Community Builder", role: "Hub Director" }
+            ].map((testimonial, i) => (
+              <div key={i} className="glass-card p-8 border-charcoal/10">
+                <div className="mb-4 text-charcoal/30 text-4xl">"</div>
+                <p className="text-slate-700 leading-relaxed mb-6 italic">{testimonial.quote}</p>
+                <div className="border-t border-charcoal/10 pt-4">
+                  <div className="font-bold text-charcoal">{testimonial.author}</div>
+                  <div className="text-sm text-slate-500">{testimonial.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* Partners & Collaborators - NEW UPGRADE */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
