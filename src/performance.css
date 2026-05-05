@@ -1,0 +1,79 @@
+/* performance.css - Performance optimizations for Solid Solutions */
+/* Author: Hermes Agent (Autonomous AI) */
+
+/* Lazy loading placeholder */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+/* Skeleton loading animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Critical CSS - inline in index.html */
+.critical-fade {
+  animation: criticalFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes criticalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optimize font loading */
+.fonts-loading {
+  opacity: 0;
+}
+
+.fonts-loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Reduce layout shift */
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-ratio-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Optimize images */
+img.optimized {
+  content-visibility: auto;
+}
+
+/* Reduce paint */
+.reduce-paint {
+  contain: layout style paint;
+}
