@@ -23,6 +23,7 @@ import {
   Brain
 } from "lucide-react";
 import { useState, useEffect, useRef, type ReactNode } from "react";
+import { useIntersectionObserver } from "./hooks/useIntersectionObserver";
 import Lenis from "lenis";
 // ChatBot removed - using Solid LLM instead
 import { ContactForm } from "./components/ContactForm";
