@@ -110,25 +110,11 @@ jobs:
           EOF
           echo "✓ Created DEFINITIVE index.html"
       
-      - name: Upload to /public_html/ (TRY MULTIPLE PATHS)
+      - name: Upload to /home/solidsol/public_html/ (CORRECT PATH)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: solidsolutions.africa
-          username: solidsol
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /public_html/
-          include: index.html
-          exclude: |
-            **/*
-            !index.html
-        continue-on-error: true
-      
-      - name: Upload to /home/solidsol/public_html/
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: solidsolutions.africa
-          username: solidsol
+          server: cpanel.solidsolutions.africa
+          username: solidLLM@solidsolutions.africa
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           server-dir: /home/solidsol/public_html/

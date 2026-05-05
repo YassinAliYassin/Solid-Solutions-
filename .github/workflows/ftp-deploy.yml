@@ -30,9 +30,11 @@ jobs:
       with:
         server: cpanel.solidsolutions.africa
         username: solidLLM@solidsolutions.africa
-        password: Aden201011#
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/
-        server-dir: /public_html/
+        server-dir: /home/solidsol/public_html/
+        protocol: ftp  # Explicitly use FTP
+        port: 21
         dangerous-clean-sync: false  # Set to true to delete old files
         exclude: |
           **/.git*
