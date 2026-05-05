@@ -1095,6 +1095,7 @@ export default function App() {
           <div className="pt-12 border-t border-charcoal/5 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-slate-700 text-sm">
               © {new Date().getFullYear()} Solid Solutions. All rights reserved.
+              <span className="block text-xs text-slate-400 mt-1">Deployed: {new Date().toLocaleString('en-US', { timeZone: 'UTC', dateStyle: 'medium', timeStyle: 'short' })} UTC</span>
             </p>
             <div className="flex gap-6 text-slate-400">
               <Globe size={20} className="hover:text-charcoal cursor-pointer transition-colors" />
