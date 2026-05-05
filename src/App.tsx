@@ -27,6 +27,7 @@ import Lenis from "lenis";
 // ChatBot removed - using Solid LLM instead
 import { ContactForm } from "./components/ContactForm";
 import CaseStudies from "./components/CaseStudies";
+import { NewsletterSignup } from "./components/NewsletterSignup";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -454,6 +455,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* Newsletter Signup */}
+      <NewsletterSignup />
+      
       {/* Research & Innovation */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
