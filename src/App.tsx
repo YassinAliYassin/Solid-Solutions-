@@ -650,6 +650,31 @@ export default function App() {
         </div>
       </section>
       
+      {/* Team - NEW UPGRADE */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle subtitle="The minds building Africa's next generation technology infrastructure.">
+            Our Team
+          </SectionTitle>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Leadership Team", role: "Founders & Strategy", icon: Users },
+              { name: "Engineering", role: "AI & Infrastructure", icon: Code },
+              { name: "Research", role: "Innovation & Development", icon: Microscope }
+            ].map((member, i) => (
+              <div key={i} className="glass-card p-8 text-center hover:border-charcoal/20 transition-all">
+                <div className="w-20 h-20 mx-auto mb-6 bg-charcoal/5 rounded-full flex items-center justify-center">
+                  <member.icon size={32} className="text-charcoal" />
+                </div>
+                <h4 className="text-lg font-bold text-charcoal mb-2">{member.name}</h4>
+                <p className="text-sm text-slate-600">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* Partners & Collaborators - NEW UPGRADE */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
