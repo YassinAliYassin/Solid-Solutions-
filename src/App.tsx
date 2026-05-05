@@ -31,6 +31,7 @@ import { NewsletterSignup } from "./components/NewsletterSignup";
 import { ParticleBackground } from "./components/ParticleBackground";
 import { HermesTerminal } from "./components/HermesTerminal";
 import { SystemStatus } from "./components/SystemStatus";
+import { VisitorCounter } from "./components/VisitorCounter";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -111,6 +112,9 @@ const FlipCard = ({ name, icon: Icon, description }: { name: string, icon: any, 
           <p className="text-sm leading-relaxed text-white font-medium">{description}</p>
         </div>
       </div>
+      
+      {/* Live Visitor Counter */}
+      <VisitorCounter />
     </div>
   );
 };
