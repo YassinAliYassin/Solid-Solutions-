@@ -872,6 +872,27 @@ export default function App() {
         </div>
       </section>
 
+      {/* Call to Action - NEW UPGRADE */}
+      <section className="py-24 bg-charcoal text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal to-charcoal/80"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Build Africa's Future?</h2>
+          <p className="text-xl text-white/70 mb-10 leading-relaxed">
+            Join Solid Solutions in shaping the next generation of technology infrastructure. 
+            Whether you're a developer, researcher, or institution - there's a place for you in our ecosystem.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" className="px-8 py-4 bg-white text-charcoal font-bold rounded-lg hover:bg-white/90 transition-all">
+              Get Involved Today
+            </a>
+            <a href="/solid-llm/" className="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+              <Brain size={20} />
+              Try Solid LLM
+            </a>
+          </div>
+        </div>
+      </section>
+      
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-bg-dark">
         <div className="max-w-7xl mx-auto px-6">
