@@ -35,7 +35,6 @@ import { SystemStatus } from "./components/SystemStatus";
 import { VisitorCounter } from "./components/VisitorCounter";
 import { AIChatWidget } from "./components/AIChatWidget";
 import { BackToTop } from "./components/BackToTop";
-import { LoadingScreen } from "./components/LoadingScreen";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
