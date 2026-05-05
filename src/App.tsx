@@ -28,6 +28,7 @@ import Lenis from "lenis";
 import { ContactForm } from "./components/ContactForm";
 import CaseStudies from "./components/CaseStudies";
 import { NewsletterSignup } from "./components/NewsletterSignup";
+import { ParticleBackground } from "./components/ParticleBackground";
 
 const SectionTitle = ({ children, subtitle }: { children: ReactNode, subtitle?: string }) => (
   <div className="mb-12">
@@ -332,6 +333,9 @@ export default function App() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden grid-pattern">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-main/50 to-bg-main pointer-events-none"></div>
+        
+        {/* Particle Background */}
+        <ParticleBackground className="opacity-40" />
         
         {/* Abstract Visuals */}
         <div className="absolute top-1/4 -right-20 w-96 h-96 bg-charcoal/5 rounded-full blur-3xl animate-pulse"></div>
