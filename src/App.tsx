@@ -268,6 +268,28 @@ export default function App() {
         />
       </div>
       
+      {/* Floating Table of Contents - NEW UPGRADE */}
+      <nav className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
+        <div className="glass-card p-4 space-y-2">
+          {[
+            { label: "About", id: "about" },
+            { label: "Mission", id: "mission" },
+            { label: "Pillars", id: "pillars" },
+            { label: "Roadmap", id: "roadmap" },
+            { label: "Vision", id: "vision" },
+            { label: "Contact", id: "contact" }
+          ].map((item, i) => (
+            <a
+              key={i}
+              href={`#${item.id}`}
+              className="block text-[10px] uppercase tracking-widest text-slate-400 hover:text-charcoal transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+      
         {activeDetail ? (
           <div 
             key="detail"
